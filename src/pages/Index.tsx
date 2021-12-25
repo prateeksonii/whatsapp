@@ -1,6 +1,6 @@
+import type { FC } from "react";
 import Center from "@components/Center";
 import Page from "@components/Page";
-import { FC } from "react";
 import { Link } from "react-router-dom";
 
 const Index: FC = () => {
@@ -15,9 +15,9 @@ const Index: FC = () => {
           <Link to='/signup' className='px-6 py-3 bg-black rounded-lg'>
             Sign up
           </Link>
-          <button className='px-6 py-3 bg-white text-black rounded-lg'>
+          <Link to='/signin' className='px-6 py-3 bg-white text-black rounded-lg'>
             Sign in
-          </button>
+          </Link>
         </div>
       </Center>
     </Page>
