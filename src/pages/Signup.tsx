@@ -4,6 +4,7 @@ import Page from "@components/Page";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler, FieldValues } from "react-hook-form";
+import supabaseClient from "@/services/supabaseClient";
 
 const Signup: FC = () => {
   const {
@@ -15,8 +16,18 @@ const Signup: FC = () => {
 
   const passwordValue = watch("password");
 
-  const onSubmit: SubmitHandler<SignupFormValues> = (values) => {
-    console.log(values);
+  const onSubmit: SubmitHandler<SignupFormValues> = async (values) => {
+    const { name, email, password } = values;
+    const { error, user } = await supabaseClient.auth.signUp(
+      { email, password },
+      {
+        data: {
+          name,
+        },
+      }
+    );
+
+    console.log(error, user);
   };
 
   console.log(errors);
@@ -67,7 +78,7 @@ const Signup: FC = () => {
                     required: "Password is required",
                     minLength: {
                       message: "Password is too weak",
-                      value: 4,
+                      value: 6,
                     },
                   })}
                 />
