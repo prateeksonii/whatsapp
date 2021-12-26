@@ -1,13 +1,19 @@
 import supabaseClient from "@/services/supabaseClient";
+import contactsAtom from "@/states/contactsAtom";
 import { UserSchema } from "@/types/schemas";
+import { useAtom } from "jotai";
 import { debounce } from "lodash-es";
 import { ChangeEventHandler, FC, useState } from "react";
 
-interface ContactsModalProps {
-  setResults: React.Dispatch<React.SetStateAction<UserSchema[] | null>>;
-}
+const ContactsModal: FC = () => {
+  const [results, setResults] = useState<UserSchema[] | null>([]);
 
-const ContactsModal: FC<ContactsModalProps> = ({ setResults }) => {
+  const [, setContacts] = useAtom(contactsAtom);
+
+  const handleClick = (user: UserSchema) => {
+    setContacts((contacts) => [...contacts, user]);
+  };
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = debounce(
     async (event) => {
       const query: string = event.target.value;
@@ -32,6 +38,20 @@ const ContactsModal: FC<ContactsModalProps> = ({ setResults }) => {
           type="text"
           onChange={handleChange}
         />
+        <div className="p-2" />
+        {results?.length! > 0 && <p>Results:</p>}
+        <ul>
+          {results?.map((result) => (
+            <div
+              key={result.id}
+              className="p-3 shadow-md text-lg flex items-center justify-between cursor-pointer hover:bg-black hover:text-white rounded-md transition-all"
+              onClick={() => handleClick(result)}
+            >
+              <span className="font-medium">{result.name}</span>
+              <span className="text-sm">{result.email}</span>
+            </div>
+          ))}
+        </ul>
       </div>
     </div>
   );

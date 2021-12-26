@@ -8,6 +8,7 @@ specifiers:
   '@types/react-modal': ^3.13.1
   '@vitejs/plugin-react': ^1.0.7
   autoprefixer: ^10.4.0
+  jotai: ^1.4.9
   lodash-es: ^4.17.21
   postcss: ^8.4.5
   react: ^17.0.2
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@supabase/supabase-js': 1.29.1
+  jotai: 1.4.9_react@17.0.2
   lodash-es: 4.17.21
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -1108,6 +1110,43 @@ packages:
 
   /is-typedarray/1.0.0:
     resolution: {integrity: sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=}
+    dev: false
+
+  /jotai/1.4.9_react@17.0.2:
+    resolution: {integrity: sha512-NHh3UIIelfUBUjcJi+oXHoL9rISkj8LZu3eeXR5KL1VBYLOuPVK0TTTDfbgdwm5B83zpxNAhTlhb/aKlJBtP0g==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      '@babel/template': '*'
+      '@urql/core': '*'
+      immer: '*'
+      optics-ts: '*'
+      react: '>=16.8'
+      react-query: '*'
+      valtio: '*'
+      wonka: '*'
+      xstate: '*'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@urql/core':
+        optional: true
+      immer:
+        optional: true
+      optics-ts:
+        optional: true
+      react-query:
+        optional: true
+      valtio:
+        optional: true
+      wonka:
+        optional: true
+      xstate:
+        optional: true
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /js-tokens/4.0.0:
