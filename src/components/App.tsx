@@ -49,7 +49,7 @@ const App: FC = () => {
           <Route path="signin" element={<Signin setRefresh={setRefresh} />} />
         </Route>
         <Route path="/chat" element={<PrivateRoute user={user} />}>
-          <Route element={<Chat />} />
+          <Route path="" element={<Chat user={user!} />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -4,12 +4,14 @@ specifiers:
   '@supabase/supabase-js': ^1.29.1
   '@types/react': ^17.0.33
   '@types/react-dom': ^17.0.10
+  '@types/react-modal': ^3.13.1
   '@vitejs/plugin-react': ^1.0.7
   autoprefixer: ^10.4.0
   postcss: ^8.4.5
   react: ^17.0.2
   react-dom: ^17.0.2
   react-hook-form: ^7.22.5
+  react-modal: ^3.14.4
   react-router-dom: ^6.2.1
   react-toastify: ^8.1.0
   tailwindcss: ^3.0.7
@@ -22,6 +24,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-hook-form: 7.22.5_react@17.0.2
+  react-modal: 3.14.4_react-dom@17.0.2+react@17.0.2
   react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
   react-toastify: 8.1.0_react-dom@17.0.2+react@17.0.2
   vite-tsconfig-paths: 3.3.17_vite@2.7.6
@@ -29,6 +32,7 @@ dependencies:
 devDependencies:
   '@types/react': 17.0.38
   '@types/react-dom': 17.0.11
+  '@types/react-modal': 3.13.1
   '@vitejs/plugin-react': 1.1.3
   autoprefixer: 10.4.0_postcss@8.4.5
   postcss: 8.4.5
@@ -391,6 +395,12 @@ packages:
 
   /@types/react-dom/17.0.11:
     resolution: {integrity: sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==}
+    dependencies:
+      '@types/react': 17.0.38
+    dev: true
+
+  /@types/react-modal/3.13.1:
+    resolution: {integrity: sha512-iY/gPvTDIy6Z+37l+ibmrY+GTV4KQTHcCyR5FIytm182RQS69G5ps4PH2FxtC7bAQ2QRHXMevsBgck7IQruHNg==}
     dependencies:
       '@types/react': 17.0.38
     dev: true
@@ -895,6 +905,10 @@ packages:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: true
 
+  /exenv/1.2.2:
+    resolution: {integrity: sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=}
+    dev: false
+
   /ext/1.6.0:
     resolution: {integrity: sha512-sdBImtzkq2HpkdRLtlLWDa6w4DX22ijZLKx8BMPUuKe1c5lbN6xwQDQCxSfxBQnHZ13ls/FH0MQZx/q/gr6FQg==}
     dependencies:
@@ -1298,6 +1312,14 @@ packages:
       source-map-js: 1.0.1
     dev: true
 
+  /prop-types/15.8.0:
+    resolution: {integrity: sha512-fDGekdaHh65eI3lMi5OnErU6a8Ighg2KjcjQxO7m8VHyWjcPyj5kiOgV1LQDOOOgVy3+5FgjXvdSSX7B8/5/4g==}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.1
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
@@ -1325,6 +1347,29 @@ packages:
       react: ^16.8.0 || ^17
     dependencies:
       react: 17.0.2
+    dev: false
+
+  /react-is/16.13.1:
+    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: false
+
+  /react-lifecycles-compat/3.0.4:
+    resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-modal/3.14.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-8surmulejafYCH9wfUmFyj4UfbSJwjcgbS9gf3oOItu4Hwd6ivJyVBETI0yHRhpJKCLZMUtnhzk76wXTsNL6Qg==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16 || ^17
+      react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17
+    dependencies:
+      exenv: 1.2.2
+      prop-types: 15.8.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-lifecycles-compat: 3.0.4
+      warning: 4.0.3
     dev: false
 
   /react-refresh/0.11.0:
@@ -1621,6 +1666,12 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /warning/4.0.3:
+    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
 
   /websocket/1.0.34:
     resolution: {integrity: sha512-PRDso2sGwF6kM75QykIesBijKSVceR6jL2G8NGYyq2XrItNC2P5/qL5XeR056GhA+Ly7JMFvJb9I312mJfmqnQ==}
