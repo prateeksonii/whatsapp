@@ -7,7 +7,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Signin: FC = () => {
+interface SigninProps {
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Signin: FC<SigninProps> = ({ setRefresh }) => {
   const navigate = useNavigate();
 
   const {
@@ -28,7 +32,7 @@ const Signin: FC = () => {
         return toast.error(error.message);
       }
 
-      navigate("/chat");
+      setRefresh(true);
     } catch (err) {
       console.error(err);
     }

@@ -3,7 +3,7 @@ import Card from "@components/Card";
 import Center from "@components/Center";
 import Page from "@components/Page";
 import { useForm } from "react-hook-form";
-import type { SubmitHandler, FieldValues } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import supabaseClient from "@/services/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
