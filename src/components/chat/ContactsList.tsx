@@ -1,10 +1,13 @@
+import { UserSchema } from "@/types/schemas";
 import { FC, useState } from "react";
 import Modal from "react-modal";
+import ContactsModal from "./ContactsModal";
 
 Modal.setAppElement("#root");
 
 const ContactsList: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [results, setResults] = useState<UserSchema[] | null>([]);
 
   return (
     <>
@@ -24,14 +27,22 @@ const ContactsList: FC = () => {
         className="absolute w-1/2 p-8 rounded-lg bg-white border-none outline-1 outline-slate-400 shadow-lg top-1/2 left-1/2 right-auto bottom-auto -mr-0.5 -translate-x-1/2 -translate-y-1/2"
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
+        onAfterClose={() => setResults([])}
       >
-        <div className="flex flex-col">
-          <h4 className="text-2xl mb-4">Search contacts</h4>
-          <label htmlFor="search-contact">
-            Enter contact's name or email address
-          </label>
-          <input className="border-2 rounded-md p-2" type="text" />
-        </div>
+        <ContactsModal setResults={setResults} />
+        <div className="p-2" />
+        {results?.length! > 0 && <p>Results:</p>}
+        <ul>
+          {results?.map((result) => (
+            <div
+              key={result.id}
+              className="p-3 shadow-md text-lg flex items-center justify-between cursor-pointer hover:bg-black hover:text-white rounded-md transition-all"
+            >
+              <span className="font-medium">{result.name}</span>
+              <span className="text-sm">{result.email}</span>
+            </div>
+          ))}
+        </ul>
       </Modal>
     </>
   );

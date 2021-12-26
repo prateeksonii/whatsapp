@@ -45,7 +45,7 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<PublicRoute user={user} />}>
           <Route path="/" element={<Index />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="signup" element={<Signup setRefresh={setRefresh} />} />
           <Route path="signin" element={<Signin setRefresh={setRefresh} />} />
         </Route>
         <Route path="/chat" element={<PrivateRoute user={user} />}>

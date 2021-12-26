@@ -7,10 +7,13 @@ import type { SubmitHandler } from "react-hook-form";
 import supabaseClient from "@/services/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { UserSchema } from "@/types/schemas";
 
-const Signup: FC = () => {
-  const navigate = useNavigate();
+interface SignupProps {
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const Signup: FC<SignupProps> = ({ setRefresh }) => {
   const {
     handleSubmit,
     register,
@@ -22,7 +25,7 @@ const Signup: FC = () => {
 
   const onSubmit: SubmitHandler<SignupFormValues> = async (values) => {
     const { name, email, password } = values;
-    const { error } = await supabaseClient.auth.signUp(
+    const { error, user } = await supabaseClient.auth.signUp(
       { email, password },
       {
         data: {
@@ -35,7 +38,11 @@ const Signup: FC = () => {
       return toast.error(error.message);
     }
 
-    navigate("/chat");
+    await supabaseClient
+      .from<UserSchema>("users")
+      .insert({ name, email, id: user?.id });
+
+    setRefresh(true);
   };
 
   return (
