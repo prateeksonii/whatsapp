@@ -1,5 +1,5 @@
 import supabaseClient from "@/services/supabaseClient";
-import contactsAtom from "@/states/contactsAtom";
+import { contactsListAtom } from "@/states/contactsAtom";
 import { UserSchema } from "@/types/schemas";
 import { useAtom } from "jotai";
 import { debounce } from "lodash-es";
@@ -8,7 +8,7 @@ import { ChangeEventHandler, FC, useState } from "react";
 const ContactsModal: FC = () => {
   const [results, setResults] = useState<UserSchema[] | null>([]);
 
-  const [, setContacts] = useAtom(contactsAtom);
+  const [, setContacts] = useAtom(contactsListAtom);
 
   const handleClick = (user: UserSchema) => {
     setContacts((contacts) => [...contacts, user]);

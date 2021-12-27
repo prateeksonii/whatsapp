@@ -1,4 +1,4 @@
-import contactsAtom from "@/states/contactsAtom";
+import { contactsListAtom, selectedContactAtom } from "@/states/contactsAtom";
 import { UserSchema } from "@/types/schemas";
 import { useAtom } from "jotai";
 import { FC, useState } from "react";
@@ -10,7 +10,12 @@ Modal.setAppElement("#root");
 const ContactsList: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [contacts] = useAtom(contactsAtom);
+  const [contacts] = useAtom(contactsListAtom);
+  const [selectedContact, setSelectedContact] = useAtom(selectedContactAtom);
+
+  const handleSelectContact = (contact: UserSchema) => {
+    setSelectedContact(contact);
+  };
 
   return (
     <>
@@ -26,7 +31,14 @@ const ContactsList: FC = () => {
           <hr />
           <ul className="text-left mt-3">
             {contacts.map((contact) => (
-              <div key={contact.id} className="p-3 rounded-lg shadow">
+              <div
+                key={contact.id}
+                className="p-3 rounded-lg shadow"
+                style={{
+                  fontWeight: contact === selectedContact ? "bold" : "normal",
+                }}
+                onClick={() => handleSelectContact(contact)}
+              >
                 {contact.name}
               </div>
             ))}

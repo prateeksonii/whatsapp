@@ -10,6 +10,7 @@ specifiers:
   autoprefixer: ^10.4.0
   jotai: ^1.4.9
   lodash-es: ^4.17.21
+  optics-ts: ^2.3.0
   postcss: ^8.4.5
   react: ^17.0.2
   react-dom: ^17.0.2
@@ -24,8 +25,9 @@ specifiers:
 
 dependencies:
   '@supabase/supabase-js': 1.29.1
-  jotai: 1.4.9_react@17.0.2
+  jotai: 1.4.9_optics-ts@2.3.0+react@17.0.2
   lodash-es: 4.17.21
+  optics-ts: 2.3.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-hook-form: 7.22.5_react@17.0.2
@@ -1112,7 +1114,7 @@ packages:
     resolution: {integrity: sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=}
     dev: false
 
-  /jotai/1.4.9_react@17.0.2:
+  /jotai/1.4.9_optics-ts@2.3.0+react@17.0.2:
     resolution: {integrity: sha512-NHh3UIIelfUBUjcJi+oXHoL9rISkj8LZu3eeXR5KL1VBYLOuPVK0TTTDfbgdwm5B83zpxNAhTlhb/aKlJBtP0g==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -1146,6 +1148,7 @@ packages:
       xstate:
         optional: true
     dependencies:
+      optics-ts: 2.3.0
       react: 17.0.2
     dev: false
 
@@ -1275,6 +1278,10 @@ packages:
     dependencies:
       wrappy: 1.0.2
     dev: true
+
+  /optics-ts/2.3.0:
+    resolution: {integrity: sha512-iu6//uEMAKsowlq7hd8pNTc43KOjxMPW60BBA8DIt0q311iiOaWPilMHGOyCDvQ7llRutwlCkGX6e4HnUD0ARg==}
+    dev: false
 
   /parent-module/1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
