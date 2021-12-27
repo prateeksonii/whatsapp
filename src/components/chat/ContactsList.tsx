@@ -20,7 +20,7 @@ const ContactsList: FC = () => {
   return (
     <>
       <div className="mt-4">
-        <div className="shadow-md  py-3 text-center font-head  px-3">
+        <div className="shadow-md rounded-lg  py-3 text-center font-head  px-3">
           <div className="text-lg font-bold">Contacts</div>
           <button
             className="my-4 w-full px-6 py-3 bg-black rounded-lg text-white"
@@ -33,10 +33,16 @@ const ContactsList: FC = () => {
             {contacts.map((contact) => (
               <div
                 key={contact.id}
-                className="p-3 rounded-lg shadow"
-                style={{
-                  fontWeight: contact === selectedContact ? "bold" : "normal",
-                }}
+                className="p-3 rounded-lg shadow cursor-pointer"
+                style={
+                  contact === selectedContact
+                    ? {
+                        fontWeight: "bold",
+                        background: "purple",
+                        color: "white",
+                      }
+                    : {}
+                }
                 onClick={() => handleSelectContact(contact)}
               >
                 {contact.name}
