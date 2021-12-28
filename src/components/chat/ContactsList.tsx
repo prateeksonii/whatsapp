@@ -1,7 +1,9 @@
+import supabaseClient from "@/services/supabaseClient";
 import { contactsListAtom, selectedContactAtom } from "@/states/contactsAtom";
-import { UserSchema } from "@/types/schemas";
+import { UserSchema, UsersContactSchema } from "@/types/schemas";
+import { PostgrestResponse } from "@supabase/supabase-js";
 import { useAtom } from "jotai";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Modal from "react-modal";
 import ContactsModal from "./ContactsModal";
 
@@ -9,13 +11,32 @@ Modal.setAppElement("#root");
 
 const ContactsList: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = supabaseClient.auth.user()!;
 
-  const [contacts] = useAtom(contactsListAtom);
+  const [contacts, setContacts] = useAtom(contactsListAtom);
   const [selectedContact, setSelectedContact] = useAtom(selectedContactAtom);
 
   const handleSelectContact = (contact: UserSchema) => {
     setSelectedContact(contact);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedContacts = await supabaseClient
+        .from<{ user_id: string; contact: UserSchema }>("users_contacts")
+        .select(
+          `
+          contact: contact_id (*)
+        `
+        )
+        .eq("user_id", user.id);
+      setContacts([
+        ...contacts,
+        ...fetchedContacts.body!.map((contact) => contact.contact),
+      ]);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

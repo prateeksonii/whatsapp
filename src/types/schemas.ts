@@ -12,6 +12,12 @@ export type ChatSchema = {
   created_at: string;
 };
 
+export type UsersContactSchema = {
+  id: string;
+  user_id: string;
+  contact: UserSchema;
+};
+
 export type Message = {
   chat: ChatSchema;
   timestamp: Date;

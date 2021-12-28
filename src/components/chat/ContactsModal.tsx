@@ -7,10 +7,14 @@ import { ChangeEventHandler, FC, useState } from "react";
 
 const ContactsModal: FC = () => {
   const [results, setResults] = useState<UserSchema[] | null>([]);
+  const signedInUser = supabaseClient.auth.user();
 
   const [, setContacts] = useAtom(contactsListAtom);
 
-  const handleClick = (user: UserSchema) => {
+  const handleClick = async (user: UserSchema) => {
+    await supabaseClient
+      .from("users_contacts")
+      .insert({ user_id: signedInUser?.id, contact_id: user.id });
     setContacts((contacts) => [...contacts, user]);
   };
 
