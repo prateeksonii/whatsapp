@@ -23,7 +23,7 @@ const ContactsModal: FC = () => {
         .or(`name.ilike.%${query}%,email.ilike.%${query}%`);
       setResults(results);
     },
-    1000
+    200
   );
 
   return (
