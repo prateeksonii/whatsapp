@@ -12,6 +12,7 @@ import { Icon } from "@iconify/react";
 import supabaseClient from "@/services/supabaseClient";
 import { ChatSchema, Message } from "@/types/schemas";
 import { SupabaseRealtimePayload } from "@supabase/supabase-js";
+import moment from "moment";
 
 const ChatBox: FC = () => {
   const [contact] = useAtom(selectedContactAtom);
@@ -82,16 +83,26 @@ const ChatBox: FC = () => {
                 message.sent ? (
                   <div
                     key={message.chat.id}
-                    className="ml-auto p-3 bg-purple-200 w-fit rounded-md"
+                    className="ml-auto flex flex-col items-end"
                   >
-                    {message.chat.message}
+                    <div className="p-3 bg-purple-200 w-fit rounded-md">
+                      {message.chat.message}
+                    </div>
+                    <div className="text-xs mt-1">
+                      {moment(message.timestamp).format("LT")}
+                    </div>
                   </div>
                 ) : (
                   <div
                     key={message.chat.id}
-                    className="p-3 bg-purple-50 w-fit rounded-md"
+                    className="flex flex-col items-start"
                   >
-                    {message.chat.message}
+                    <div className="p-3 bg-purple-50 w-fit rounded-md">
+                      {message.chat.message}
+                    </div>
+                    <div className="text-xs mt-1">
+                      {moment(message.timestamp).format("LT")}
+                    </div>
                   </div>
                 )
               )}

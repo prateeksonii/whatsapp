@@ -4,6 +4,7 @@ specifiers:
   '@iconify/react': ^3.1.0
   '@supabase/supabase-js': ^1.29.1
   '@types/lodash-es': ^4.17.5
+  '@types/moment': ^2.13.0
   '@types/react': ^17.0.33
   '@types/react-dom': ^17.0.10
   '@types/react-modal': ^3.13.1
@@ -11,6 +12,7 @@ specifiers:
   autoprefixer: ^10.4.0
   jotai: ^1.4.9
   lodash-es: ^4.17.21
+  moment: ^2.29.1
   optics-ts: ^2.3.0
   postcss: ^8.4.5
   react: ^17.0.2
@@ -29,6 +31,7 @@ dependencies:
   '@supabase/supabase-js': 1.29.1
   jotai: 1.4.9_optics-ts@2.3.0+react@17.0.2
   lodash-es: 4.17.21
+  moment: 2.29.1
   optics-ts: 2.3.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -40,6 +43,7 @@ dependencies:
 
 devDependencies:
   '@types/lodash-es': 4.17.5
+  '@types/moment': 2.13.0
   '@types/react': 17.0.38
   '@types/react-dom': 17.0.11
   '@types/react-modal': 3.13.1
@@ -405,6 +409,13 @@ packages:
 
   /@types/lodash/4.14.178:
     resolution: {integrity: sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==}
+    dev: true
+
+  /@types/moment/2.13.0:
+    resolution: {integrity: sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=}
+    deprecated: This is a stub types definition for Moment (https://github.com/moment/moment). Moment provides its own type definitions, so you don't need @types/moment installed!
+    dependencies:
+      moment: 2.29.1
     dev: true
 
   /@types/node/17.0.4:
@@ -1229,6 +1240,9 @@ packages:
 
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
+
+  /moment/2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
 
   /ms/2.0.0:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}

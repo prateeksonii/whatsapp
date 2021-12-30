@@ -30,10 +30,7 @@ const ContactsList: FC = () => {
         `
         )
         .eq("user_id", user.id);
-      setContacts([
-        ...contacts,
-        ...fetchedContacts.body!.map((contact) => contact.contact),
-      ]);
+      setContacts(fetchedContacts.body!.map((contact) => contact.contact));
     };
     fetchData();
   }, []);
