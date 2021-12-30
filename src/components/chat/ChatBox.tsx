@@ -13,6 +13,7 @@ import supabaseClient from "@/services/supabaseClient";
 import { ChatSchema, Message } from "@/types/schemas";
 import { SupabaseRealtimePayload } from "@supabase/supabase-js";
 import moment from "moment";
+import { sortBy } from "lodash-es";
 
 const ChatBox: FC = () => {
   const [contact] = useAtom(selectedContactAtom);
@@ -23,9 +24,49 @@ const ChatBox: FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
+    if (!contact) return;
+
+    const fetchPrevMessages = async () => {
+      const { body: sentData } = await supabaseClient
+        .from<ChatSchema>("chats")
+        .select("*")
+        .eq("sender", user.id)
+        .eq("receiver", contact.id)
+        .order("created_at");
+
+      const { body: receivedData } = await supabaseClient
+        .from<ChatSchema>("chats")
+        .select("*")
+        .eq("sender", contact.id)
+        .eq("receiver", user.id)
+        .order("created_at");
+
+      const sentMessages: Message[] =
+        sentData?.map((row) => ({
+          chat: row,
+          timestamp: new Date(row.created_at),
+          sent: true,
+        })) ?? [];
+
+      const receivedMessages: Message[] =
+        receivedData?.map((row) => ({
+          chat: row,
+          timestamp: new Date(row.created_at),
+          sent: false,
+        })) ?? [];
+
+      const allMessages = [...sentMessages, ...receivedMessages];
+      setMessages(sortBy(allMessages, ["timestamp"]));
+    };
+
+    fetchPrevMessages();
+  }, [contact]);
+
+  useEffect(() => {
     supabaseClient
       .from(`chats:sender=eq.${contact?.id}`)
       .on("INSERT", (payload: SupabaseRealtimePayload<ChatSchema>) => {
+        console.log(payload);
         if (payload.new.receiver === user.id) {
           setMessages((messages) => [
             ...messages,
