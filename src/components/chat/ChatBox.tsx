@@ -14,6 +14,7 @@ import { ChatSchema, Message } from "@/types/schemas";
 import { SupabaseRealtimePayload } from "@supabase/supabase-js";
 import moment from "moment";
 import { sortBy } from "lodash-es";
+import ScrollToBottom from "@components/utils/ScrollToBottom";
 
 const ChatBox: FC = () => {
   const [contact] = useAtom(selectedContactAtom);
@@ -147,6 +148,7 @@ const ChatBox: FC = () => {
                   </div>
                 )
               )}
+              <ScrollToBottom />
             </div>
             <div className="flex-initial">
               <div className="relative h-max">
